@@ -1,0 +1,15 @@
+{
+  "from": 0,
+  "size": 100,
+  "sort": [{"_timestamp": "desc"}],
+  "fields": ["_timestamp", "_source"],
+  "query": {
+    "filtered": {
+       "filter": {
+          "term": {
+             "payload.deploymentUuid.raw": "53dad510-500f-11e5-a807-1389cc713f93"
+          }
+       }
+    }
+ }
+}

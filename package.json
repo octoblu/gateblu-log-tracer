@@ -1,0 +1,39 @@
+{
+  "name": "flow-deploy-tracer",
+  "version": "1.0.0",
+  "description": "Trace what happened to that dog gone flow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "deckard": "./command.js",
+    "deckard-trace": "./command-trace.js",
+    "flow-deploy-tracer": "./command.js",
+    "flow-deploy-tracer-trace": "./command-trace.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octoblu/flow-deploy-tracer.git"
+  },
+  "keywords": [
+    "Octoblu"
+  ],
+  "author": "Octoblu Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/octoblu/flow-deploy-tracer/issues"
+  },
+  "homepage": "https://github.com/octoblu/flow-deploy-tracer#readme",
+  "dependencies": {
+    "coffee-script": "^1.9.3",
+    "colors": "^1.1.2",
+    "commander": "^2.8.1",
+    "debug": "^2.2.0",
+    "elasticsearch": "^8.0.1",
+    "lodash": "^3.10.1",
+    "moment": "^2.10.6",
+    "request": "^2.61.0",
+    "tab": "^0.1.0"
+  }
+}
