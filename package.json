@@ -9,8 +9,10 @@
   "bin": {
     "deckard": "./command.js",
     "deckard-trace": "./command-trace.js",
+    "deckard-list-failures": "./command-list-failures.js",
     "flow-deploy-tracer": "./command.js",
-    "flow-deploy-tracer-trace": "./command-trace.js"
+    "flow-deploy-tracer-trace": "./command-trace.js",
+    "flow-deploy-tracer-list-failures": "./command-list-failures.js"
   },
   "repository": {
     "type": "git",

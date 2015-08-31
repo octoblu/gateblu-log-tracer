@@ -1,0 +1,16 @@
+{
+  "from": 0,
+  "size": 100,
+  "sort": "_timestamp",
+  "query": {
+    "filtered": {
+      "filter": {
+        "and": [{
+          "term": {
+            "success": false
+          }
+        }]
+      }
+    }
+  }
+}
