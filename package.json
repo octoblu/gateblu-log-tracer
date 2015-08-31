@@ -10,9 +10,11 @@
     "deckard": "./command.js",
     "deckard-trace": "./command-trace.js",
     "deckard-list-failures": "./command-list-failures.js",
+    "deckard-flow-activity": "./command-flow-activity.js",
     "flow-deploy-tracer": "./command.js",
     "flow-deploy-tracer-trace": "./command-trace.js",
-    "flow-deploy-tracer-list-failures": "./command-list-failures.js"
+    "flow-deploy-tracer-list-failures": "./command-list-failures.js",
+    "flow-deploy-tracer-flow-activity": "./command-flow-activity.js"
   },
   "repository": {
     "type": "git",
