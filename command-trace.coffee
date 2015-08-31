@@ -34,9 +34,9 @@ class CommandTrace
       @printMetaData logs unless @omitHeader
 
       @printTable _.map logs, (log) =>
-        {application,state} = log._source.payload
+        {application,state,message} = log._source.payload
         timestamp = moment(log.fields._timestamp).format()
-        [timestamp, application, state]
+        [timestamp, application, state, message ? ""]
 
       process.exit 0
 
@@ -55,6 +55,7 @@ class CommandTrace
         {label: 'TIME', width: 28},
         {label: 'APPLICATION', width: 22}
         {label: 'STATE', width: 10}
+        {label: 'MESSAGE', width: 30}
       ]
       rows: rows
 
@@ -62,8 +63,13 @@ class CommandTrace
     @elasticsearch.search({
       index: 'device_status_flow'
       type:  'event'
-      body:  QUERY
+      body:  @query()
     }, callback)
+
+  query: =>
+    query = _.cloneDeep QUERY
+    query.query.filtered.filter.term['payload.deploymentUuid.raw'] = @deploymentUuid
+    query
 
   die: (error) =>
     if 'Error' == typeof error

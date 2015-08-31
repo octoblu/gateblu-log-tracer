@@ -7,7 +7,7 @@
     "filtered": {
        "filter": {
           "term": {
-             "payload.deploymentUuid.raw": "53dad510-500f-11e5-a807-1389cc713f93"
+             "payload.deploymentUuid.raw": null
           }
        }
     }
