@@ -5,16 +5,16 @@ commander = require 'commander'
 tab = require 'tab'
 Elasticsearch = require 'elasticsearch'
 debug     = require('debug')('command-trace:check')
-QUERY = require './get-logs-by-flow-uuid.json'
+QUERY = require './get-logs-by-gateblu-uuid.json'
 
 class CommandTrace
   parseOptions: =>
     commander
-      .usage '<flow-uuid>'
+      .usage '<gateblu-uuid>'
       .option '-o, --omit-header', 'Omit meta-information and table header'
       .parse process.argv
 
-    @flowUuid = _.first commander.args
+    @gatebluUuid = _.first commander.args
     @ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL ? 'http://localhost:9201'
     @elasticsearch = new Elasticsearch.Client host: @ELASTICSEARCH_URL
 
@@ -22,7 +22,7 @@ class CommandTrace
 
   run: =>
     @parseOptions()
-    return @die new Error('Missing Flow UUID') unless @flowUuid?
+    return @die new Error('Missing gateblu UUID') unless @gatebluUuid?
 
     @trace()
 
@@ -53,14 +53,14 @@ class CommandTrace
 
   search: (callback=->) =>
     @elasticsearch.search({
-      index: 'device_status_flow'
+      index: 'device_status_gateblu'
       type:  'event'
       body:  @query()
     }, callback)
 
   query: =>
     query = _.cloneDeep QUERY
-    query.query.filtered.filter.term['payload.flowUuid.raw'] = @flowUuid
+    query.query.filtered.filter.term['payload.gatebluUuid.raw'] = @gatebluUuid
     query
 
   die: (error) =>

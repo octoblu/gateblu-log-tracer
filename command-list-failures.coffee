@@ -46,7 +46,7 @@ class CommandTrace
 
   search: (callback=->) =>
     @elasticsearch.search({
-      index: 'flow_deploy_history'
+      index: 'gateblu_device_add_history'
       type:  'event'
       body:  @query()
     }, callback)

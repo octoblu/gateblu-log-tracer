@@ -34,6 +34,7 @@ class CommandTrace
       @printMetaData logs unless @omitHeader
 
       @printTable _.map logs, (log) =>
+        debug 'log', log
         {application,state,message} = log._source.payload
         timestamp = moment(log.fields._timestamp).format()
         [timestamp, application, state, message ? ""]
@@ -42,10 +43,10 @@ class CommandTrace
 
   printMetaData: (logs) =>
     workflow = _.first(logs)?._source?.payload?.workflow ? 'unknown'
-    flowUuid = _.first(logs)?._source?.payload?.flowUuid ? 'unknown'
+    gatebluUuid = _.first(logs)?._source?.payload?.gatebluUuid ? 'unknown'
 
     console.log "WORKFLOW: #{workflow}"
-    console.log "FLOWUUID: #{flowUuid}"
+    console.log "gatebluUUID: #{gatebluUuid}"
     console.log ""
 
   printTable: (rows) =>
@@ -61,7 +62,7 @@ class CommandTrace
 
   search: (callback=->) =>
     @elasticsearch.search({
-      index: 'device_status_flow'
+      index: 'device_status_gateblu'
       type:  'event'
       body:  @query()
     }, callback)

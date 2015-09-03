@@ -7,7 +7,7 @@
     "filtered": {
        "filter": {
           "term": {
-             "payload.flowUuid.raw": null
+             "payload.gatebluUuid.raw": null
           }
        }
     }
