@@ -32,9 +32,15 @@ class CommandTrace
       logs = results.hits.hits.reverse()
 
       @printTable _.map logs, (log) =>
-        {workflow,application,state,deploymentUuid,message,connector} = log._source.payload
+        {workflow,application,state,deploymentUuid,message,connector,gatebluVersion,platform} = log._source.payload
         timestamp = moment(log.fields._timestamp).format()
-        [timestamp, workflow, application, state, connector, deploymentUuid, message ? ""]
+        connector = connector.replace(/^meshblu-/, '')
+        application = application.replace(/^gateblu-/, '')
+        readableVersion = "(v#{gatebluVersion})" if gatebluVersion?
+        readablePlatform = "[#{platform}]" if platform?
+        application += "#{readableVersion ? ""}#{readablePlatform ? ""}"
+        message ?= ""
+        [timestamp, workflow, application, state, connector, deploymentUuid, message]
 
       process.exit 0
 
@@ -42,13 +48,13 @@ class CommandTrace
     tab.emitTable
       omitHeader: @omitHeader
       columns: [
-        {label: 'TIME', width: 28},
-        {label: 'WORKFLOW', width: 28},
-        {label: 'APPLICATION', width: 22}
+        {label: 'TIME', width: 26},
+        {label: 'WORKFLOW', width: 20},
+        {label: 'APPLICATION', width: 25}
         {label: 'STATE', width: 10}
-        {label: 'CONNECTOR', width: 20}
+        {label: 'CONNECTOR', width: 10}
         {label: 'DEPLOYMENT_UUID', width: 38}
-        {label: 'MESSAGE', width: 30}
+        {label: 'MESSAGE', width: 40}
       ]
       rows: rows
 
