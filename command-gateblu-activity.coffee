@@ -32,9 +32,9 @@ class CommandTrace
       logs = results.hits.hits.reverse()
 
       @printTable _.map logs, (log) =>
-        {workflow,application,state,deploymentUuid,message} = log._source.payload
+        {workflow,application,state,deploymentUuid,message,connector} = log._source.payload
         timestamp = moment(log.fields._timestamp).format()
-        [timestamp, workflow, application, state, deploymentUuid, message ? ""]
+        [timestamp, workflow, application, state, connector, deploymentUuid, message ? ""]
 
       process.exit 0
 
@@ -46,7 +46,8 @@ class CommandTrace
         {label: 'WORKFLOW', width: 28},
         {label: 'APPLICATION', width: 22}
         {label: 'STATE', width: 10}
-        {label: 'DEPLOYMENT_UUID', width: 34}
+        {label: 'CONNECTOR', width: 20}
+        {label: 'DEPLOYMENT_UUID', width: 38}
         {label: 'MESSAGE', width: 30}
       ]
       rows: rows
