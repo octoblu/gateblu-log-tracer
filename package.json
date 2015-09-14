@@ -1,6 +1,6 @@
 {
   "name": "gateblu-log-tracer",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Trace what happened to that dog gone gateblu",
   "main": "index.js",
   "scripts": {
@@ -10,10 +10,14 @@
     "holden": "./command.js",
     "holden-trace": "./command-trace.js",
     "holden-list-failures": "./command-list-failures.js",
+    "holden-list-activity": "./command-list-activity.js",
+    "holden-group-failures": "./command-group-failures.js",
     "holden-gateblu-activity": "./command-gateblu-activity.js",
     "gateblu-log-tracer": "./command.js",
     "gateblu-log-tracer-trace": "./command-trace.js",
     "gateblu-log-tracer-list-failures": "./command-list-failures.js",
+    "gateblu-log-tracer-list-activity": "./command-list-activity.js",
+    "gateblu-log-tracer-group-failures": "./command-group-failures.js",
     "gateblu-log-tracer-gateblu-activity": "./command-gateblu-activity.js"
   },
   "repository": {

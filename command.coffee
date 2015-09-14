@@ -5,8 +5,10 @@ class Command
   run: =>
     commander
       .version packageJSON.version
-      .command 'list-failures', 'get list of gateblu-deployment failures in last 24 hours'
-      .command 'trace',         'trace a gateblu deployment'
+      .command 'list-activity',    'get list of gateblu activity in last 24 hours'
+      .command 'list-failures',    'get list of gateblu-deployment failures in last 24 hours'
+      .command 'group-failures',   'get list of gateblu failed activity grouped by gateblu in last 24 hours'
+      .command 'trace',            'trace a gateblu deployment'
       .command 'gateblu-activity', 'show activity for a gateblu uuid'
       .parse process.argv
 

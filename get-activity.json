@@ -1,0 +1,12 @@
+{
+  "from": 0,
+  "size": 100,
+  "sort": [{"_timestamp": "desc"}],
+  "fields": ["_timestamp", "_source"],
+  "query": {
+    "filtered": {
+      "filter": {
+      }
+    }
+  }
+}
