@@ -28,14 +28,20 @@ class CommandTrace
       logs = results.hits.hits.reverse()
 
       @printTable _.map logs, (log) =>
-        {workflow,state,gatebluUuid,deploymentUuid,connector,application,gatebluVersion,platform} = log._source.payload
+        {workflow,state,message,deploymentUuid,connector,application,gatebluVersion,platform} = log._source.payload
         timestamp = moment(log.fields._timestamp).format()
         connector = connector?.replace(/^meshblu-/, '')
         application = application?.replace(/^gateblu-/, '')
         readableVersion = "(v#{gatebluVersion})" if gatebluVersion?
         readablePlatform = "[#{platform}]" if platform?
         application += "#{readableVersion ? ""}#{readablePlatform ? ""}"
-        [timestamp, workflow, application, state, connector, deploymentUuid, gatebluUuid]
+        message ?= ''
+        connector ?= 'unknown'
+        application ?= 'unknown'
+        workflow ?= 'unknown'
+        state ?= 'unknown'
+        deploymentUuid ?= 'unknown'
+        [timestamp, workflow, application, state, connector, deploymentUuid, message]
 
       process.exit 0
 
@@ -49,7 +55,7 @@ class CommandTrace
         {label: 'STATE', width: 10}
         {label: 'CONNECTOR', width: 13}
         {label: 'DEPLOYMENT_UUID', width: 38}
-        {label: 'GATEBLU_UUID', width: 38}
+        {label: 'MESSAGE', width: 38}
       ]
       rows: rows
 
@@ -62,8 +68,8 @@ class CommandTrace
 
   query: =>
     query = _.cloneDeep QUERY
-    one_day_ago = moment().subtract(1,'day').valueOf()
-    query.query.filtered.filter = range: _timestamp: gte: one_day_ago
+    two_days_ago = moment().subtract(2,'day').valueOf()
+    query.query.filtered.filter = range: _timestamp: gte: two_days_ago
     query
 
   die: (error) =>
