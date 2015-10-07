@@ -1,6 +1,6 @@
 {
   "name": "gateblu-log-tracer",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Trace what happened to that dog gone gateblu",
   "main": "index.js",
   "scripts": {
