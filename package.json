@@ -13,12 +13,14 @@
     "holden-list-activity": "./command-list-activity.js",
     "holden-group-failures": "./command-group-failures.js",
     "holden-gateblu-activity": "./command-gateblu-activity.js",
+    "holden-device-installs": "./command-device-installs.js",
     "gateblu-log-tracer": "./command.js",
     "gateblu-log-tracer-trace": "./command-trace.js",
     "gateblu-log-tracer-list-failures": "./command-list-failures.js",
     "gateblu-log-tracer-list-activity": "./command-list-activity.js",
     "gateblu-log-tracer-group-failures": "./command-group-failures.js",
-    "gateblu-log-tracer-gateblu-activity": "./command-gateblu-activity.js"
+    "gateblu-log-tracer-gateblu-activity": "./command-gateblu-activity.js",
+    "gateblu-device-installs": "./command-device-installs.js"
   },
   "repository": {
     "type": "git",

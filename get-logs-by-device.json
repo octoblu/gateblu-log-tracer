@@ -1,0 +1,38 @@
+{
+  "from": 0,
+  "size": 10000,
+  "aggs": {
+    "addGatebluDevice": {
+      "filter": {
+        "and": [
+          {
+            "term": {
+              "payload.workflow.raw": "add-device"
+            }
+          },
+          {
+            "term": {
+              "payload.state.raw": "end"
+            }
+          }
+        ]
+      },
+      "aggs": {
+        "group_by_connector": {
+          "terms": {
+            "field": "payload.connector.raw",
+            "size" : 10000
+          },
+          "aggs": {
+            "group_by_deployment": {
+              "terms": {
+                "field": "payload.deploymentUuid.raw",
+                "size" : 10000
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
